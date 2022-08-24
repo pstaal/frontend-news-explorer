@@ -6,9 +6,9 @@ function SavedNews() {
 
     return (
         <section className="cardlist cardlist-savednews">
-                <div className="cardlist__container cardlist-savednews">
+                <ul className="cardlist__container cardlist-savednews">
                     {cards.map((card) => <NewsCard key={card.id} card={card}/>)}
-                </div>
+                </ul>
         </section>
     )
   }

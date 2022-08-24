@@ -49,11 +49,11 @@ function PopupWithForm({closeModal, isModalOpen}) {
                (<><h3 className="popup__title">Sign up</h3>
                <form onSubmit={registerUser} className="popup__form">
                 <label className="popup__label" htmlFor="email">Email</label>
-                <input className="popup__input" type="text" name="email" id="email" placeholder="Enter email"/>
+                <input required className="popup__input" type="text" name="email" id="email" placeholder="Enter email"/>
                 <label className="popup__label" htmlFor="name">Password</label>
-                <input className="popup__input" type="password" name="password" id="password" placeholder="Enter password"/>
+                <input required className="popup__input" type="password" name="password" id="password" placeholder="Enter password"/>
                 <label className="popup__label" htmlFor="name">Email</label>
-                <input className="popup__input" type="text" name="name" id="name" placeholder="Enter your username"/>
+                <input required className="popup__input" type="text" name="name" id="name" placeholder="Enter your username"/>
                 <button className="popup__button" type="submit">Sign up</button>
                 <p className="popup__text">Or <span onClick={() => setSignup(false)}>Sign in</span></p>
                </form> </>) 
@@ -61,9 +61,9 @@ function PopupWithForm({closeModal, isModalOpen}) {
                ( !message.show ? (<><h3 className="popup__title">Sign in</h3>
                <form className="popup__form">
                 <label className="popup__label" htmlFor="email">Email</label>
-                <input className="popup__input" type="text" name="email" id="email" placeholder="Enter email"/>
+                <input required className="popup__input" type="text" name="email" id="email" placeholder="Enter email"/>
                 <label className="popup__label" htmlFor="name">Password</label>
-                <input className="popup__input" type="password" name="password" id="password" placeholder="Enter password"/>
+                <input required className="popup__input" type="password" name="password" id="password" placeholder="Enter password"/>
                 <button className="popup__button" type="submit">Sign in</button>
                 <p className="popup__text">Or <span onClick={() => setSignup(true)}>Sign up</span></p>
                </form> </>) :

@@ -4,6 +4,7 @@
 
 .cardlist__container.cardlist-savednews {
     margin-bottom: 0;
+    justify-content: start;
 }
 
 @media screen and (max-width: 1100px) {

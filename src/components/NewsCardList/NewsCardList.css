@@ -43,12 +43,13 @@
 
 .cardlist {
     margin: 0;
-	padding: 80px 104px;
+	padding: 80px 0;
 	background-color: #F5F6F7;
 }
 
 .cardlist__title {
     margin: 0;
+    margin-left: 104px;
     padding: 0;
     font-weight: 400;
     margin-bottom: 64px;
@@ -62,6 +63,7 @@
     padding:0;
     margin-bottom: 64px;
     display: grid;
+    justify-content: center;
     grid-template-columns: repeat( auto-fit, 400px );
     gap: 16px;
 }
@@ -86,7 +88,7 @@
     background-color: #E8E8E8;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1450px) {
     .cardlist__container {
         grid-template-columns: repeat( auto-fit, minmax(224px, 1fr));
     }
@@ -94,6 +96,7 @@
     .cardlist__title {
         font-size: 30px;
         line-height: 1.13;
+        margin-left: 0;
     }
 
     .cardlist {
@@ -107,11 +110,13 @@
   
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
     .cardlist {
         padding: 32px 16px 16px 16px;
     }
+}
 
+@media screen and (max-width: 450px) {
     .cardlist__button {
         width: 100%;
         padding: 16px 0;

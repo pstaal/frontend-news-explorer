@@ -11,8 +11,8 @@ function Nav({isSavedArticlesUrl, openModal}) {
     return (
      <nav>
         <ul className={`nav ${isSavedArticlesUrl ? 'nav-black' : ''}`}>
-            <NavLink to={'/saved-news'} onClick={removeMobileStyling} className={({ isActive }) => "nav__item" + (isSavedArticlesUrl ? ' nav-black' : '') + (isActive ? " nav__item-active" : "")}>Saved articles</NavLink>
-            <NavLink to={'/'} onClick={removeMobileStyling} className={({ isActive }) => "nav__item" + (isSavedArticlesUrl ? ' nav-black' : '') + (isActive ? " nav__item-active" : "")}>Home</NavLink>
+            <NavLink to={'/saved-news'} onClick={removeMobileStyling} className={({ isActive }) => "nav__item" + (isSavedArticlesUrl ? ' nav-black' : '') + (isActive ? " nav-item-active" : "")}>Saved articles</NavLink>
+            <NavLink to={'/'} onClick={removeMobileStyling} className={({ isActive }) => "nav__item" + (isSavedArticlesUrl ? ' nav-black' : '') + (isActive ? " nav-item-active" : "")}>Home</NavLink>
             <li className={`nav__button ${isSavedArticlesUrl? 'nav-black' : ''}`} onClick={openModal}>Sign in</li>
         </ul>
       </nav>

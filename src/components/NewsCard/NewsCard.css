@@ -9,11 +9,14 @@
     width: 100%;
 }
 
-.newscard__tooltip {
+.newscard__tooltip-home, 
+.newscard__tooltip-saved {
     display: none;
 }
 
-.newscard__button:hover + .newscard__tooltip {
+
+
+.newscard__button:hover + .newscard__tooltip-home {
     position: absolute;
     margin: 0;
     top: 24px;
@@ -31,6 +34,10 @@
     color: #000000;
 }
 
+.newscard__button.newscard__button-selected {
+    background-image: url('../../images/bookmark-blue.svg');
+}
+
 .delete__button {
     background-color: #fff;
     background-image: url('../../images/trash.svg');
@@ -45,6 +52,28 @@
     position: absolute;
     top: 24px;
     right: 24px;
+}
+
+.delete__button:hover {
+    background-image: url('../../images/trash-hover.svg');
+}
+
+.delete__button:hover + .newscard__tooltip-saved {
+    position: absolute;
+    margin: 0;
+    top: 24px;
+    right: 69px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.17;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
 }
 
 .newscard__button {
