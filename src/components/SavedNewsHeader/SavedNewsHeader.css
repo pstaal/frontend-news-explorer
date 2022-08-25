@@ -33,10 +33,7 @@
 }
 
 @media screen and (max-width: 1100px) {
-    .savednewsheader {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
+    
     .savednewsheader__title {
         font-size: 14px;
         line-height: 1.7;

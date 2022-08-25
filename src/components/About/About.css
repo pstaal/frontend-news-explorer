@@ -2,7 +2,10 @@
     display: flex;
     background-color: #fff;
     padding: 80px 216px 80px 104px;
+    display: flex;
+    justify-content: center;
 }
+
 
 .about__image {
     display: block;
@@ -56,7 +59,7 @@
 
 @media screen and (max-width: 580px) {
     .about {
-        padding: 32px 16px 128px 16px;
+        padding: 32px 16px 0 16px;
         flex-direction: column;
     }
 
