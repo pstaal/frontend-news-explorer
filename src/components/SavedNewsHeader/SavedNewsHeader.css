@@ -45,3 +45,10 @@
         max-width: 450px;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .savednewsheader {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
