@@ -1,0 +1,20 @@
+.cardlist.cardlist-savednews {
+    padding: 62px 0;
+}
+
+.cardlist__container.cardlist-savednews {
+    margin-bottom: 0;
+    justify-content: start;
+}
+
+@media screen and (max-width: 1100px) {
+    .cardlist.cardlist-savednews {
+        padding: 32px 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .cardlist.cardlist-savednews {
+        padding: 24px 0;
+    }
+}
