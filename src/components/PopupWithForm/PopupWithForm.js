@@ -6,20 +6,14 @@ import Login from '../Login/Login';
 function PopupWithForm({closeModal, isModalOpen}) {
 
     const [ signup, setSignup ] = React.useState(false);
-    const [message, setMessage] = React.useState({ show: false, message: ''});
+    const [showSuccess, setShowSuccess] = React.useState(false);
 
 
-    const closePopup = () => {
+    const closePopup = React.useCallback(() => {
         closeModal();
         setSignup(false);
-        setMessage({show: false, message: ''});
-    }
-
-    const registerUser = () => {
-        //registering the user in the backend
-        setMessage({show: true, message: 'Registration successfully completed!'});
-        setSignup(false);
-    }
+        setShowSuccess(false);
+    },[closeModal])
  
     React.useEffect(() => {
         const closeOnEscape = (e) => {
@@ -41,20 +35,13 @@ function PopupWithForm({closeModal, isModalOpen}) {
         window.removeEventListener('click', closeOnClick);
         window.removeEventListener('keydown', closeOnEscape)
       };
-    },[closeModal])
+    },[closeModal, closePopup])
 
     return (
        <div className={`popup ${isModalOpen? 'popup_opened' : ''}`}>
            <div className="popup__container">
                <button type="button" className="popup__close" onClick={closePopup}></button>
-               { signup ? 
-               (<Register registerUser={registerUser} setSignup={setSignup}/>) 
-               : 
-               ( !message.show ? (<Login setSignup={setSignup}/>) :
-               (<><h3 className="popup__title">Registration successfully completed!</h3>
-               <p className="popup__text"><span onClick={() => setMessage({show: false, message: ''})}>Sign in</span></p></>)
-               )
-               }
+               { signup ? <Register setSignup={setSignup} showSuccess={showSuccess} setShowSuccess={setShowSuccess}/> : <Login setSignup={setSignup}/> }
            </div>
        </div>
     )
