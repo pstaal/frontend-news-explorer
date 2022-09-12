@@ -6,10 +6,20 @@ class MainApi {
       }
 
       _handleResponse(res) {
+        console.log(res);
         return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
       }
 
-     
+      addUser(email,password, name) {
+        return fetch(`${this._baseUrl}/signup`, 
+        { method: "POST",
+          headers: this._headers,
+          body: JSON.stringify({
+                    email, password, name
+                  })
+        })
+        .then(res => this._handleResponse(res));
+      }
       
    
 
@@ -88,7 +98,7 @@ class MainApi {
 
 //initalize mainApi instance
 const mainApi = new MainApi({
-  baseUrl: process.env.NODE_ENV === "production" ? 'https://api.petertje.students.nomoredomainssbs.ru/' : 'http://localhost:3000',
+  baseUrl: 'https://api.petertje.students.nomoredomainssbs.ru',
   headers: {
     "Content-Type": "application/json"
   }
