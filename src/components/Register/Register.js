@@ -8,7 +8,9 @@ function Register({setSignup, showSuccess, setShowSuccess}) {
 
 const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
-const registerUser = () => {
+const registerUser = (event) => {
+
+    event.preventDefault();
     //registering the user in the backend
     const { email, password, name } = values;
     mainApi.addUser(email, password, name)
@@ -17,6 +19,8 @@ const registerUser = () => {
         setShowSuccess(true);
     })
     .catch((err) => {
+        const errorElement = document.querySelector('.popup__submit-error');
+        errorElement.textContent = err.message;
         console.log(err)
     })
     
@@ -45,6 +49,7 @@ if (!showSuccess) {
             <label className="popup__label" htmlFor="name">Username</label>
             <input required className="popup__input" type="text" name="name" minLength="2" maxLength="30" id="name" placeholder="Enter your username" onChange={handleChange} value={values.name}/>
             <p className="popup__input-error">{errors.name}</p>
+            <p className="popup__submit-error"></p>
             <button disabled={!isValid} className="popup__button" type="submit">Sign up</button>
             <p className="popup__text">Or <span onClick={() => setSignup(false)}>Sign in</span></p>
         </form>

@@ -76,6 +76,17 @@
     cursor: pointer;
 }
 
+.popup__submit-error {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.25;
+    color: #FF0000;
+    width:fit-content;
+    margin: 0 auto;
+    height: 12px;
+    margin-top: -12px;
+}
+
 .popup__button:disabled {
     background: #E6E8EB;
     box-shadow: none;
