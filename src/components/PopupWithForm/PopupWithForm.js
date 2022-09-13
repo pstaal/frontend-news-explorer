@@ -3,17 +3,16 @@ import React from 'react';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 
-function PopupWithForm({closeModal, isModalOpen}) {
+function PopupWithForm({closeModal, isModalOpen, loginUser, registerUser, showSuccess, setShowSuccess}) {
 
     const [ signup, setSignup ] = React.useState(false);
-    const [showSuccess, setShowSuccess] = React.useState(false);
 
 
     const closePopup = React.useCallback(() => {
         closeModal();
         setSignup(false);
         setShowSuccess(false);
-    },[closeModal])
+    },[closeModal, setShowSuccess])
  
     React.useEffect(() => {
         const closeOnEscape = (e) => {
@@ -41,7 +40,7 @@ function PopupWithForm({closeModal, isModalOpen}) {
        <div className={`popup ${isModalOpen? 'popup_opened' : ''}`}>
            <div className="popup__container">
                <button type="button" className="popup__close" onClick={closePopup}></button>
-               { signup ? <Register setSignup={setSignup} showSuccess={showSuccess} setShowSuccess={setShowSuccess}/> : <Login setSignup={setSignup}/> }
+               { signup ? <Register setSignup={setSignup} registerUser={registerUser} showSuccess={showSuccess} /> : <Login setSignup={setSignup} loginUser={loginUser}/> }
            </div>
        </div>
     )

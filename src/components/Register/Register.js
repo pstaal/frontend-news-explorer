@@ -1,30 +1,19 @@
 import './Register.css';
 import React from 'react';
 import useFormWithValidation from '../../utils/formValidationHook';
-import mainApi from '../../utils/MainApi';
 
-function Register({setSignup, showSuccess, setShowSuccess}) {
+function Register({setSignup, showSuccess, registerUser}) {
 
 
 const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
-const registerUser = (event) => {
-
+const handleRegistration = (event) => {
     event.preventDefault();
     //registering the user in the backend
     const { email, password, name } = values;
-    mainApi.addUser(email, password, name)
-    .then(() => {
-        console.log("it worked!!")
-        setShowSuccess(true);
-    })
-    .catch((err) => {
-        const errorElement = document.querySelector('.popup__submit-error');
-        errorElement.textContent = err.message;
-        console.log(err)
-    })
-    
+    registerUser(email, password, name);
 }
+
 
 if (showSuccess) {
     return (
@@ -39,7 +28,7 @@ if (!showSuccess) {
     return (
         <> 
         <h3 className="popup__title">Sign up</h3>
-        <form onSubmit={registerUser} className="popup__form">
+        <form onSubmit={handleRegistration} className="popup__form">
             <label className="popup__label" htmlFor="email">Email</label>
             <input required className="popup__input" type="email" name="email" id="email" placeholder="Enter email" onChange={handleChange} value={values.email}/>
             <p className="popup__input-error">{errors.email}</p>

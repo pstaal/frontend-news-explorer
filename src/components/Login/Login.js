@@ -2,14 +2,21 @@ import './Login.css';
 import React from 'react';
 import useFormWithValidation from '../../utils/formValidationHook';
 
-function Login({setSignup}) {
+
+function Login({setSignup, loginUser}) {
 
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+        const { email, password } = values;
+        loginUser(email, password);
+    }
 
     return (
         <>
         <h3 className="popup__title">Sign in</h3>
-            <form className="popup__form">
+            <form className="popup__form" onSubmit={handleLogin}>
                 <label className="popup__label" htmlFor="email">Email</label>
                 <input required className="popup__input" type="email" name="email" id="email" placeholder="Enter email" value={values.email} onChange={handleChange}/>
                 <p className="popup__input-error">{errors.email}</p>

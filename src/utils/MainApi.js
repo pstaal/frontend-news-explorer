@@ -21,6 +21,16 @@ class MainApi {
         .then(res => this._handleResponse(res));
       }
       
+      login (email,password) {
+        return fetch(`${this._baseUrl}/signin`, 
+        { method: "POST",
+          headers: this._headers,
+          body: JSON.stringify({
+                    email, password
+                  })
+        })
+        .then(res => this._handleResponse(res));
+      }
    
 
     //   getInitialUser(token) {
