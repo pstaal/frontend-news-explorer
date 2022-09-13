@@ -1,13 +1,11 @@
 import './SavedNews.css';
 import NewsCard from '../NewsCard/NewsCard';
-import cards from "../../utils/cardData";
 
-function SavedNews() {
-
+function SavedNews({articles}) {
     return (
         <section className="cardlist cardlist-savednews">
                 <ul className="cardlist__container cardlist-savednews">
-                    {cards.map((card) => <NewsCard key={card.id} card={card}/>)}
+                    {articles.length > 0 ? articles.map((article) => <NewsCard key={article._id} article={article}/>) : <></>}
                 </ul>
         </section>
     )

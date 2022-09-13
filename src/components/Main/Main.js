@@ -3,7 +3,6 @@ import About from "../About/About";
 import React from 'react';
 import Preloader from "../Preloader/Preloader";
 import NewsCardList from '../NewsCardList/NewsCardList';
-import cards from "../../utils/cardData";
 import newsApi from "../../utils/newsApi";
 
 function Main() {

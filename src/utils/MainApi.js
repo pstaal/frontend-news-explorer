@@ -31,7 +31,26 @@ class MainApi {
         })
         .then(res => this._handleResponse(res));
       }
+
+      verifyJWT (token) {
+        return fetch(`${this._baseUrl}/users/me`, {
+          method: 'GET',
+          headers: {
+            ...this._headers,
+            Authorization: `Bearer ${token}`,
+          }})
+        .then(res => this._handleResponse(res));
+      };
    
+      getArticles(){
+        return fetch(`${this._baseUrl}/articles`, {
+          method: 'GET',
+          headers: {
+            ...this._headers,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          }})
+        .then(res => this._handleResponse(res));
+      } 
 
     //   getInitialUser(token) {
     //         return fetch(`${this._baseUrl}/users/me`, {
