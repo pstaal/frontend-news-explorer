@@ -40,7 +40,7 @@ function PopupWithForm({closeModal, isModalOpen, loginUser, registerUser, showSu
        <div className={`popup ${isModalOpen? 'popup_opened' : ''}`}>
            <div className="popup__container">
                <button type="button" className="popup__close" onClick={closePopup}></button>
-               { signup ? <Register setSignup={setSignup} registerUser={registerUser} showSuccess={showSuccess} /> : <Login setSignup={setSignup} loginUser={loginUser}/> }
+               { signup ? <Register setShowSuccess={setShowSuccess} setSignup={setSignup} registerUser={registerUser} showSuccess={showSuccess} /> : <Login setSignup={setSignup} loginUser={loginUser}/> }
            </div>
        </div>
     )

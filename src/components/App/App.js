@@ -33,7 +33,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }}, [isLoggedIn]);
+  }}, [articles, isLoggedIn]);
 
   function verifyToken() {
     const storedToken = localStorage.getItem('token');
@@ -80,10 +80,12 @@ const registerUser = (email,password, name) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setShowSuccess(false);
   }
 
   const openModal = () => {
     setIsModalOpen(true);
+    setShowSuccess(false);
   }
 
   return (
@@ -96,7 +98,7 @@ const registerUser = (email,password, name) => {
             <Route path="/saved-news" element={<><SavedNewsHeader/><SavedNews articles={articles}/></>} />
           </Routes>
         <Footer />
-        <PopupWithForm closeModal={closeModal} isModalOpen={isModalOpen} showSuccess={showSuccess} loginUser={loginUser} setShowSucces={setShowSuccess} registerUser={registerUser}/>
+        <PopupWithForm closeModal={closeModal} isModalOpen={isModalOpen} showSuccess={showSuccess} loginUser={loginUser} setShowSuccess={setShowSuccess} registerUser={registerUser}/>
       </CurrentUserContext.Provider>
     </div>
   );

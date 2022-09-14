@@ -2,7 +2,7 @@ import './Register.css';
 import React from 'react';
 import useFormWithValidation from '../../utils/formValidationHook';
 
-function Register({setSignup, showSuccess, registerUser}) {
+function Register({setSignup, showSuccess, registerUser, setShowSuccess}) {
 
 
 const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
@@ -19,7 +19,7 @@ if (showSuccess) {
     return (
         <>
         <h3 className="popup__title">Registration successfully completed!</h3>
-        <p className="popup__text"><span onClick={() => setSignup(false)}>Sign in</span></p>
+        <p className="popup__text"><span onClick={() => { setSignup(false); setShowSuccess(false)}}>Sign in</span></p>
         </>  
     )
 }

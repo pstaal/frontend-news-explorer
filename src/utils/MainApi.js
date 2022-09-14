@@ -127,7 +127,7 @@ class MainApi {
 
 //initalize mainApi instance
 const mainApi = new MainApi({
-  baseUrl: 'https://api.petertje.students.nomoredomainssbs.ru',
+  baseUrl: 'https://api.nieuws.students.nomoredomainssbs.ru',
   headers: {
     "Content-Type": "application/json"
   }

@@ -31,7 +31,7 @@ function NewsCardList(props) {
             <section className="cardlist">
                 <div className="cardlist__container">
                     <h2 className="cardlist__title">Search results</h2>
-                    {filteredCards.map((card, index) => <NewsCard key={index} card={card}/>)}
+                    {filteredCards.map((card, index) => <NewsCard key={index} article={card}/>)}
                 </div>
                 {showButton && <button className="cardlist__button" onClick={() => setCounter(counter + 3)}>Show more</button>}
             </section>
