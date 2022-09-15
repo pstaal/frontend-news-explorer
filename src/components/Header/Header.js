@@ -21,7 +21,7 @@ function Header(props) {
                 <span className={`header__hamburger-bar ${isSavedArticlesUrl ? 'header-black' : ''}`}></span>
             </div>
         </div>
-        <Nav isSavedArticlesUrl={isSavedArticlesUrl} openModal={props.openModal}/>
+        <Nav isSavedArticlesUrl={isSavedArticlesUrl} openModal={props.openModal} setIsLoggedIn={props.setIsLoggedIn} isLoggedIn={props.isLoggedIn}/>
       </div>
     )
   }

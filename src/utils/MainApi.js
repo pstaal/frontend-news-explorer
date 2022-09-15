@@ -6,7 +6,6 @@ class MainApi {
       }
 
       _handleResponse(res) {
-        console.log(res);
         return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
       }
 
@@ -51,6 +50,31 @@ class MainApi {
           }})
         .then(res => this._handleResponse(res));
       } 
+
+      addArticle(keyword, title, text, date, source, link, image) {
+        return fetch(`${this._baseUrl}/articles`, {
+          method: 'POST',
+          headers: {
+            ...this._headers,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({
+            keyword, title, text, date, source, link, image
+          })})
+        .then(res => this._handleResponse(res))
+
+      }
+
+      deleteArticle(id){
+        return fetch(`${this._baseUrl}/articles/${id}`, {
+          method: 'DELETE',
+          headers: {
+            ...this._headers,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          })
+        .then(res => this._handleResponse(res))
+      }
 
     //   getInitialUser(token) {
     //         return fetch(`${this._baseUrl}/users/me`, {

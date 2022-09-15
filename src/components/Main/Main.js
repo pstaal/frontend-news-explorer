@@ -5,12 +5,13 @@ import Preloader from "../Preloader/Preloader";
 import NewsCardList from '../NewsCardList/NewsCardList';
 import newsApi from "../../utils/newsApi";
 
-function Main() {
+function Main({ isLoggedIn, saveCard, deleteCard }) {
 
     const [loading, setLoading] = React.useState(false);
     const [cardData, setCardData] = React.useState(null);
     const [searchError, setSearchError] = React.useState(false);
     const [apiError, setApiError] = React.useState(false);
+    const [searchTerm, setSearchTerm] = React.useState(null);
 
     React.useEffect(() => {
        const savedCards = JSON.parse(localStorage.getItem("cards"));
@@ -42,6 +43,7 @@ function Main() {
 
         newsApi.search(params).then((res) => {
             setCardData(res.articles);
+            setSearchTerm(searchTerm);
             if (res.articles.length > 0) localStorage.setItem("cards", JSON.stringify(res.articles));
             if (res.articles.length === 0) localStorage.clear();
         }).catch((error)=> {
@@ -57,7 +59,7 @@ function Main() {
         <>
             <Hero onSubmit={onSearchSubmit} searchError={searchError}/>
             {loading && <Preloader/>}
-            {!loading && <NewsCardList cardData={cardData} apiError={apiError}/>}
+            {!loading && <NewsCardList deleteCard={deleteCard} saveCard={saveCard} searchTerm={searchTerm} isLoggedIn={isLoggedIn} cardData={cardData} apiError={apiError}/>}
             <About />
         </>
     );

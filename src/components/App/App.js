@@ -15,33 +15,48 @@ function App() {
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn ] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [articles, setArticles] = React.useState([]);
 
   React.useEffect(() => {
+    console.log("run once");
     verifyToken();
   }, []);
 
   React.useEffect(() => {
     if (isLoggedIn) {
-      console.log(articles);
+      console.log("runs a lot");
       mainApi.getArticles()
       .then((res)=> {
-        setArticles(res.data);
+        const newArticles = res.data.map((article) => {
+          return {
+            id: article._id,
+            urlToImage: article.image,
+            category: article.keyword,
+            title: article.title,
+            publishedAt: article.date,
+            description: article.text,
+            source: {name : article.source}
+          }
+        })
+        setArticles(newArticles);
+        console.log("these are the articles", articles);
       })
       .catch((err) => {
         console.log(err);
       });
-  }}, [articles, isLoggedIn]);
+  }}, [isLoggedIn]);
 
   function verifyToken() {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       mainApi.verifyJWT(storedToken)
         .then((res) => {
+          console.log('inside tokencheck', res.data);
           setIsLoggedIn(true);
           setCurrentUser(res.data);
+          console.log("this is a user", currentUser);
         })
         .catch((err) => {
           console.log(err);
@@ -55,6 +70,9 @@ function App() {
     mainApi.login(email, password)
     .then((res) => {
         localStorage.setItem('token', res.token);
+        verifyToken();
+        closeModal();
+        console.log("user here",currentUser);
     })
     .catch((err) => {
         const errorElement = document.querySelector('.popup__submit-error');
@@ -78,6 +96,35 @@ const registerUser = (email,password, name) => {
   
 }
 
+  const deleteCard = (id) => {
+    mainApi.deleteArticle(id)
+    .then((res) => {
+      const removedArticleId = res.data._id;
+      setArticles(articles.filter((article)=> {return article.id !== removedArticleId}));
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
+  const saveCard = (keyword, title, text, date, source, link, image, event) => {
+    mainApi.addArticle(keyword, title, text, date, source, link, image)
+    .then((res) => {
+      const newArticle = {
+        id: res.data._id,
+        urlToImage: res.data.image,
+        category: res.data.keyword,
+        title: res.data.title,
+        publishedAt: res.data.date,
+        description: res.data.text,
+        source: {name : res.data.source}
+      };
+      setArticles([...articles, newArticle])
+      event.target.classList.add('newscard__button-selected');
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
     setShowSuccess(false);
@@ -92,10 +139,10 @@ const registerUser = (email,password, name) => {
     <div className="page">
     <div className="overlay"></div>
       <CurrentUserContext.Provider value={currentUser}>
-        <Header openModal={openModal}/>
+        <Header openModal={openModal} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
           <Routes>
-            <Route exact path="/" element={ <Main />} />
-            <Route path="/saved-news" element={<><SavedNewsHeader/><SavedNews articles={articles}/></>} />
+            <Route exact path="/" element={ <Main deleteCard={deleteCard} saveCard={saveCard} isLoggedIn={isLoggedIn}/>} />
+            <Route path="/saved-news" element={<><SavedNewsHeader articles={articles}/><SavedNews articles={articles}/></>} />
           </Routes>
         <Footer />
         <PopupWithForm closeModal={closeModal} isModalOpen={isModalOpen} showSuccess={showSuccess} loginUser={loginUser} setShowSuccess={setShowSuccess} registerUser={registerUser}/>
