@@ -11,6 +11,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import mainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import articlesSort from '../../utils/articlesSort';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
 
@@ -23,6 +24,9 @@ function App() {
   React.useEffect(() => {
     console.log("run once");
     verifyToken();
+    if(!isLoggedIn) {
+      openModal();
+    }
   }, []);
 
   React.useEffect(() => {
@@ -145,7 +149,7 @@ const registerUser = (email,password, name) => {
         <Header openModal={openModal} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
           <Routes>
             <Route exact path="/" element={ <Main openModal={openModal} deleteCard={deleteCard} saveCard={saveCard} isLoggedIn={isLoggedIn} articles={articles}/>} />
-            <Route path="/saved-news" element={<><SavedNewsHeader articles={articles}/><SavedNews deleteCard={deleteCard} articles={articles}/></>} />
+            <Route path="/saved-news" element={<ProtectedRoute isLoggedIn={isLoggedIn}><SavedNewsHeader articles={articles}/><SavedNews deleteCard={deleteCard} articles={articles}/></ProtectedRoute>} />
           </Routes>
         <Footer />
         <PopupWithForm closeModal={closeModal} isModalOpen={isModalOpen} showSuccess={showSuccess} loginUser={loginUser} setShowSuccess={setShowSuccess} registerUser={registerUser}/>
