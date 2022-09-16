@@ -10,6 +10,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import mainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import articlesSort from '../../utils/articlesSort';
 
 function App() {
 
@@ -40,7 +41,8 @@ function App() {
             source: {name : article.source}
           }
         })
-        setArticles(newArticles);
+
+        setArticles(articlesSort(newArticles));
         console.log("these are the articles", articles);
       })
       .catch((err) => {
@@ -100,13 +102,14 @@ const registerUser = (email,password, name) => {
     mainApi.deleteArticle(id)
     .then((res) => {
       const removedArticleId = res.data._id;
-      setArticles(articles.filter((article)=> {return article.id !== removedArticleId}));
+      const newArticles = articles.filter((article)=> {return article.id !== removedArticleId});
+      setArticles(articlesSort(newArticles));
     }).catch((err) => {
       console.log(err);
     });
   }
 
-  const saveCard = (keyword, title, text, date, source, link, image, event) => {
+  const saveCard = (keyword, title, text, date, source, link, image) => {
     mainApi.addArticle(keyword, title, text, date, source, link, image)
     .then((res) => {
       const newArticle = {
@@ -118,8 +121,8 @@ const registerUser = (email,password, name) => {
         description: res.data.text,
         source: {name : res.data.source}
       };
-      setArticles([...articles, newArticle])
-      event.target.classList.add('newscard__button-selected');
+      const newArticles = [...articles, newArticle];
+      setArticles(articlesSort(newArticles));
     }).catch((err) => {
       console.log(err);
     });
@@ -141,7 +144,7 @@ const registerUser = (email,password, name) => {
       <CurrentUserContext.Provider value={currentUser}>
         <Header openModal={openModal} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
           <Routes>
-            <Route exact path="/" element={ <Main deleteCard={deleteCard} saveCard={saveCard} isLoggedIn={isLoggedIn}/>} />
+            <Route exact path="/" element={ <Main openModal={openModal} deleteCard={deleteCard} saveCard={saveCard} isLoggedIn={isLoggedIn} articles={articles}/>} />
             <Route path="/saved-news" element={<><SavedNewsHeader articles={articles}/><SavedNews deleteCard={deleteCard} articles={articles}/></>} />
           </Routes>
         <Footer />
