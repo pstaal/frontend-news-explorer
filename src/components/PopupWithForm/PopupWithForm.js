@@ -15,14 +15,14 @@ function PopupWithForm({closeModal, isModalOpen, loginUser, registerUser, showSu
     },[closeModal, setShowSuccess])
  
     React.useEffect(() => {
-        const closeOnEscape = (e) => {
-          if(e.keyCode === 27){
+        const closeOnEscape = (event) => {
+          if(event.key === 'Escape'){
             closePopup()
           }
         }
 
-        const closeOnClick = (e) => {
-            if(e.target.classList.contains('popup') && !e.target.classList.contains('popup__container')){
+        const closeOnClick = (event) => {
+            if(event.target.classList.contains('popup') && !e.target.classList.contains('popup__container')){
                 closePopup()
             }
         }

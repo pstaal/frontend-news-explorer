@@ -3,7 +3,7 @@
 import React from "react";
 
 export default function useFormWithValidation() {
-    const [values, setValues] = React.useState({});
+    const [values, setValues] = React.useState({email:'', password: '', name: ''});
     const [errors, setErrors] = React.useState({});
     const [isValid, setIsValid] = React.useState(false);
   
