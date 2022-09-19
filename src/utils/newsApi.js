@@ -20,7 +20,7 @@ class NewsApi {
 
 //initalize newsApi instance
 const newsApi = new NewsApi({
-  baseUrl: "https://newsapi.org/v2/everything",
+  baseUrl: "https://nomoreparties.co/news/v2/everything",
   headers: {
     "Content-Type": "application/json",
   },

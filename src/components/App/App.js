@@ -23,13 +23,11 @@ function App() {
   const [signup, setSignup] = React.useState(false);
 
   React.useEffect(() => {
-    console.log("run once");
     verifyToken();
   }, []);
 
   React.useEffect(() => {
     if (isLoggedIn) {
-      console.log("runs a lot");
       mainApi
         .getArticles()
         .then((res) => {
@@ -46,7 +44,6 @@ function App() {
           });
 
           setArticles(articlesSort(newArticles));
-          console.log("these are the articles", articles);
         })
         .catch((err) => {
           console.log(err);
@@ -60,10 +57,8 @@ function App() {
       mainApi
         .verifyJWT(storedToken)
         .then((res) => {
-          console.log("inside tokencheck", res.data);
           setIsLoggedIn(true);
           setCurrentUser(res.data);
-          console.log("this is a user", currentUser);
         })
         .catch((err) => {
           console.log(err);
