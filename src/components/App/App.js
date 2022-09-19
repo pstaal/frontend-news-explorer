@@ -66,6 +66,7 @@ function App() {
           console.log(err);
         });
     } else {
+      setPageLoading(false);
       return;
     }
   }
@@ -77,7 +78,6 @@ function App() {
         localStorage.setItem("token", res.token);
         verifyToken();
         closeModal();
-        console.log("user here", currentUser);
       })
       .catch((err) => {
         const errorElement = document.querySelector(".popup__submit-error");
