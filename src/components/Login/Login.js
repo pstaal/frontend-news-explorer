@@ -1,9 +1,10 @@
 import './Login.css';
 import React from 'react';
 import useFormWithValidation from '../../utils/formValidationHook';
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 
-function Login({setSignup, loginUser}) {
+function Login({setSignup, loginUser, closeModal, isModalOpen, setShowSuccess}) {
 
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
@@ -14,7 +15,7 @@ function Login({setSignup, loginUser}) {
     }
 
     return (
-        <>
+        <PopupWithForm closeModal={closeModal} isModalOpen={isModalOpen} setShowSuccess={setShowSuccess}>
         <h3 className="popup__title">Sign in</h3>
             <form className="popup__form" onSubmit={handleLogin}>
                 <label className="popup__label" htmlFor="email">Email</label>
@@ -27,7 +28,7 @@ function Login({setSignup, loginUser}) {
                 <button disabled={!isValid} className="popup__button" type="submit">Sign in</button>
                 <p className="popup__text">Or <span onClick={() => setSignup(true)}>Sign up</span></p>
             </form> 
-        </>
+        </PopupWithForm>
     )
 }
 

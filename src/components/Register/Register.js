@@ -1,8 +1,9 @@
 import './Register.css';
 import React from 'react';
 import useFormWithValidation from '../../utils/formValidationHook';
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
-function Register({setSignup, showSuccess, registerUser, setShowSuccess}) {
+function Register({setSignup, showSuccess, registerUser, setShowSuccess, closeModal, isModalOpen }) {
 
 
 const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
@@ -26,7 +27,7 @@ if (showSuccess) {
 
 if (!showSuccess) {
     return (
-        <> 
+        <PopupWithForm closeModal={closeModal} isModalOpen={isModalOpen} setShowSuccess={setShowSuccess}> 
         <h3 className="popup__title">Sign up</h3>
         <form onSubmit={handleRegistration} className="popup__form">
             <label className="popup__label" htmlFor="email">Email</label>
@@ -42,7 +43,7 @@ if (!showSuccess) {
             <button disabled={!isValid} className="popup__button" type="submit">Sign up</button>
             <p className="popup__text">Or <span onClick={() => setSignup(false)}>Sign in</span></p>
         </form>
-        </>
+        </PopupWithForm>
     )
 }
 

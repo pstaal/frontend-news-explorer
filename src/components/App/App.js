@@ -7,11 +7,12 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import mainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import articlesSort from '../../utils/articlesSort';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [articles, setArticles] = React.useState([]);
+  const [ signup, setSignup ] = React.useState(false);
 
   React.useEffect(() => {
     console.log("run once");
@@ -149,7 +151,7 @@ const registerUser = (email,password, name) => {
             <Route path="/saved-news" element={<ProtectedRoute openModal={openModal} isLoggedIn={isLoggedIn}><SavedNewsHeader articles={articles}/><SavedNews deleteCard={deleteCard} articles={articles}/></ProtectedRoute>} />
           </Routes>
         <Footer />
-        <PopupWithForm closeModal={closeModal} isModalOpen={isModalOpen} showSuccess={showSuccess} loginUser={loginUser} setShowSuccess={setShowSuccess} registerUser={registerUser}/>
+        {signup ? <Register setSignup={setSignup} setShowSuccess={setShowSuccess} isModalOpen={isModalOpen} closeModal={closeModal} registerUser={registerUser} showSuccess={showSuccess}/> : <Login setSignup={setSignup} loginUser={loginUser} setShowSuccess={setShowSuccess} isModalOpen={isModalOpen} closeModal={closeModal}/>}
       </CurrentUserContext.Provider>
     </div>
   );

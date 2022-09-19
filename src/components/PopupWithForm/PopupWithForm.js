@@ -1,11 +1,9 @@
 import './PopupWithForm.css';
 import React from 'react';
-import Register from '../Register/Register';
-import Login from '../Login/Login';
 
-function PopupWithForm({closeModal, isModalOpen, loginUser, registerUser, showSuccess, setShowSuccess}) {
 
-    const [ signup, setSignup ] = React.useState(false);
+function PopupWithForm({closeModal, isModalOpen, setShowSuccess, setSignup, children}) {
+
 
 
     const closePopup = React.useCallback(() => {
@@ -22,7 +20,7 @@ function PopupWithForm({closeModal, isModalOpen, loginUser, registerUser, showSu
         }
 
         const closeOnClick = (event) => {
-            if(event.target.classList.contains('popup') && !e.target.classList.contains('popup__container')){
+            if(event.target.classList.contains('popup') && !event.target.classList.contains('popup__container')){
                 closePopup()
             }
         }
@@ -40,7 +38,7 @@ function PopupWithForm({closeModal, isModalOpen, loginUser, registerUser, showSu
        <div className={`popup ${isModalOpen? 'popup_opened' : ''}`}>
            <div className="popup__container">
                <button type="button" className="popup__close" onClick={closePopup}></button>
-               { signup ? <Register setShowSuccess={setShowSuccess} setSignup={setSignup} registerUser={registerUser} showSuccess={showSuccess} /> : <Login setSignup={setSignup} loginUser={loginUser}/> }
+               {children}
            </div>
        </div>
     )
