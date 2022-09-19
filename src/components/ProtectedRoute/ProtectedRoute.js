@@ -1,13 +1,17 @@
 // ProtectedRoute.js
 
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function ProtectedRoute({ isLoggedIn, children, openModal }) {
-  if (!isLoggedIn) {
-    openModal();
-    return <Navigate to={"/"} />;
-  }
+function ProtectedRoute({ isLoggedIn, children, openModal, pageLoading}) {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (!isLoggedIn && !pageLoading) {
+      openModal();
+      navigate('/');
+    }
+  }, [isLoggedIn, openModal, pageLoading]);
+
   return children;
 }
 

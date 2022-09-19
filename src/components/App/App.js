@@ -21,6 +21,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [articles, setArticles] = React.useState([]);
   const [signup, setSignup] = React.useState(false);
+  const [pageLoading, setPageLoading] = React.useState(true);
 
   React.useEffect(() => {
     verifyToken();
@@ -58,6 +59,7 @@ function App() {
         .verifyJWT(storedToken)
         .then((res) => {
           setIsLoggedIn(true);
+          setPageLoading(false);
           setCurrentUser(res.data);
         })
         .catch((err) => {
@@ -168,7 +170,7 @@ function App() {
           <Route
             path="/saved-news"
             element={
-              <ProtectedRoute openModal={openModal} isLoggedIn={isLoggedIn}>
+              <ProtectedRoute openModal={openModal} isLoggedIn={isLoggedIn} pageLoading={pageLoading}>
                 <SavedNewsHeader articles={articles} />
                 <SavedNews deleteCard={deleteCard} articles={articles} />
               </ProtectedRoute>
