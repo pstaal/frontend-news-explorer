@@ -1,105 +1,103 @@
 .header {
-    width: 100%;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 0;
-    background-color: rgba(196, 196, 196, 0.01);
-    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  background-color: rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .header.header-black {
-    box-shadow: inset 0px -1px 0px #D1D2D6;
+  box-shadow: inset 0px -1px 0px #d1d2d6;
 }
 
 .header__logo {
-    text-decoration: none;
-    color: inherit;
-    font-family: 'Roboto Slab', serif;
-    font-weight: 700;
-    color: #fff;
-    font-size: 20px;
-    line-height: 1.2;
-    margin: 30px 0 26px 104px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 30px 0 26px 104px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .header__logo.header-black {
-    color: #000;
+  color: #000;
 }
 
 .header__hamburger {
-    display: none;
+  display: none;
 }
 
 .header__hamburger-bar {
-    display: block;
-    width: 16px;
-    height: 2px;
-    margin: 4px auto;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    background-color: #fff;
+  display: block;
+  width: 16px;
+  height: 2px;
+  margin: 4px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
 }
 
 .header__hamburger-bar.header-black {
-    background-color: #000;
+  background-color: #000;
 }
 
 .header__wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 1000px) {
-    .header__logo {
-        margin: 23px 0 18px 40px;
-    }
+  .header__logo {
+    margin: 23px 0 18px 40px;
+  }
 }
 
 @media screen and (max-width: 700px) {
-    .header__logo {
-        margin: 16px 0 16px 16px;
-        font-size: 16px;
-        line-height: 1.5;
-    }
-    .header__hamburger {
-        display:block;
-        margin: 24px 30px 0 0;
-        cursor: pointer;
-    }
+  .header__logo {
+    margin: 16px 0 16px 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .header__hamburger {
+    display: block;
+    margin: 24px 30px 0 0;
+    cursor: pointer;
+  }
 
-    .header.header__menu-active {
-        background-color: #000;
-        flex-direction: column;
-        box-shadow: none;
-    }
+  .header.header__menu-active {
+    background-color: #000;
+    flex-direction: column;
+    box-shadow: none;
+  }
 
-    .header.header__menu-active.header-black {
-        background-color: #fff;
-    }
+  .header.header__menu-active.header-black {
+    background-color: #fff;
+  }
 
+  .header__menu-active .header__wrapper {
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  }
 
-    .header__menu-active .header__wrapper {
-        box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-    }
+  .header__menu-active .header__wrapper.header-black {
+    box-shadow: inset 0px -1px 0px #d1d2d6;
+  }
 
-    .header__menu-active .header__wrapper.header-black {
-        box-shadow: inset 0px -1px 0px #D1D2D6;
-    }
+  .header__menu-active .header__hamburger-bar:nth-child(1) {
+    transform: translateY(3px) rotate(45deg);
+  }
 
-    .header__menu-active .header__hamburger-bar:nth-child(1) {
-        transform: translateY(3px) rotate(45deg);
-    }
-
-    .header__menu-active .header__hamburger-bar:nth-child(2) {
-        transform: translateY(-3px) rotate(-45deg);
-    }
-
+  .header__menu-active .header__hamburger-bar:nth-child(2) {
+    transform: translateY(-3px) rotate(-45deg);
+  }
 }

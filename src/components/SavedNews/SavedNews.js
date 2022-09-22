@@ -1,16 +1,24 @@
-import './SavedNews.css';
-import NewsCard from '../NewsCard/NewsCard';
-import cards from "../../utils/cardData";
+import "./SavedNews.css";
+import NewsCard from "../NewsCard/NewsCard";
 
-function SavedNews() {
+function SavedNews({ articles, deleteCard }) {
+  return (
+    <section className="cardlist cardlist-savednews">
+      <ul className="cardlist__container cardlist-savednews">
+        {articles.length > 0 ? (
+          articles.map((article) => (
+            <NewsCard
+              key={article.id}
+              article={article}
+              deleteCard={deleteCard}
+            />
+          ))
+        ) : (
+          <></>
+        )}
+      </ul>
+    </section>
+  );
+}
 
-    return (
-        <section className="cardlist cardlist-savednews">
-                <ul className="cardlist__container cardlist-savednews">
-                    {cards.map((card) => <NewsCard key={card.id} card={card}/>)}
-                </ul>
-        </section>
-    )
-  }
-  
-  export default SavedNews;
+export default SavedNews;

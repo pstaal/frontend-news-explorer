@@ -1,130 +1,128 @@
 .nocards {
-    margin: 0;
-	padding: 0;
-	background-color: #F5F6F7;
-    height: 282px;
-    display: flex;
-    justify-content: center;
-    padding: 86px 0 80px 0;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f6f7;
+  height: 282px;
+  display: flex;
+  justify-content: center;
+  padding: 86px 0 80px 0;
 }
 
 .nocards__content {
-    margin:0;
-    padding: 0;
-    display:flex;
-    flex-direction: column;
-    max-width: 356px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 356px;
 }
 
 .nocards__image {
-    display: block;
-    align-self: center;
+  display: block;
+  align-self: center;
 }
 
 .nocards__title {
-    padding: 0;
-    margin: 0;
-    margin-top: 40px;
-    font-family: 'Roboto Slab', serif;
-    text-align: center;
-    font-size: 26px;
-    line-height: 1.15;
+  padding: 0;
+  margin: 0;
+  margin-top: 40px;
+  font-family: "Roboto Slab", serif;
+  text-align: center;
+  font-size: 26px;
+  line-height: 1.15;
 }
 
 .nocards__text {
-    padding: 0;
-    margin: 0;
-    margin-top:16px;
-    color: #B6BCBF;
-    font-size: 18px;
-    line-height: 1.33;
-    text-align: center;
+  padding: 0;
+  margin: 0;
+  margin-top: 16px;
+  color: #b6bcbf;
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: center;
 }
 
 .cardlist {
-    margin: 0;
-	padding: 80px 0;
-	background-color: #F5F6F7;
+  margin: 0;
+  padding: 80px 0;
+  background-color: #f5f6f7;
 }
 
 .cardlist__title {
-    margin: 0;
-    padding: 0;
-    font-weight: 400;
-    margin-bottom: 64px;
-    font-family: 'Roboto Slab', serif;
-    font-size: 40px;
-    line-height: 1.15;
-    grid-row:1;
-    grid-column:1/-1;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  margin-bottom: 64px;
+  font-family: "Roboto Slab", serif;
+  font-size: 40px;
+  line-height: 1.15;
+  grid-row: 1;
+  grid-column: 1/-1;
 }
 
 .cardlist__container {
-    margin: 0 104px;
-    padding:0;
-    margin-bottom: 64px;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(3, minmax(250px, 400px));
-    gap: 16px;
+  margin: 0 104px;
+  padding: 0;
+  margin-bottom: 64px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, minmax(250px, 400px));
+  gap: 16px;
 }
 
 .cardlist__button {
-    border: none;
-    outline: none;
-    display: block;
-    margin: 0 auto;
-    background-color: #fff;
-    cursor: pointer;
-    border-radius: 80px;
-    width: 288px;
-    padding: 20px 98px;
-    text-align: center;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 1.33;
+  border: none;
+  outline: none;
+  display: block;
+  margin: 0 auto;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 80px;
+  width: 288px;
+  padding: 20px 98px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
 }
 
 .cardlist__button:hover {
-    background-color: #E8E8E8;
+  background-color: #e8e8e8;
 }
 
 @media screen and (max-width: 1450px) {
+  .cardlist__title {
+    font-size: 30px;
+    line-height: 1.13;
+    margin-left: 0;
+  }
 
-    .cardlist__title {
-        font-size: 30px;
-        line-height: 1.13;
-        margin-left: 0;
-    }
+  .cardlist {
+    padding: 40px;
+  }
 
-    .cardlist {
-        padding: 40px;
-    }
-
-    .cardlist__button {
-        width: 240px;
-        padding: 16px 74px;
-    }
-  
+  .cardlist__button {
+    width: 240px;
+    padding: 16px 74px;
+  }
 }
 
 @media screen and (max-width: 800px) {
-    .cardlist__container {
-        grid-template-columns: repeat( auto-fit, minmax(224px, 1fr));
-        margin-left: 16px;
-        margin-right: 16px;
-        padding: 0;
-    }
+  .cardlist__container {
+    grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 0;
+  }
 
-    .cardlist {
-        padding: 32px 16px 16px 16px;
-    }
+  .cardlist {
+    padding: 32px 16px 16px 16px;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .cardlist__button {
-        width: 100%;
-        padding: 16px 0;
-        text-align: center;
-    }
+  .cardlist__button {
+    width: 100%;
+    padding: 16px 0;
+    text-align: center;
+  }
 }
